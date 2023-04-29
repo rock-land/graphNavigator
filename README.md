@@ -20,7 +20,7 @@ Drag and drop views to change the order
 
 ## INSTALL
 
-Just put the graphNavigator folder in your ComfyUI\\web\\extensions folder.
+Just put the graphNavigator folder in your ComfyUI\\web\\extensions folder and restart ComfyUI.
 
 ## TODO
 
