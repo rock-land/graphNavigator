@@ -16,6 +16,8 @@ Right-click select Rename from the context menu.
 **Arrange Views**
 Drag and drop views to change the order
 
+![image](https://user-images.githubusercontent.com/111552054/235281310-9d909f5f-93be-4603-86ed-fc23fbf97a4f.png)
+
 ## INSTALL
 
 Just put the graphNavigator folder in your ComfyUI\\web\\extensions folder.
@@ -23,5 +25,3 @@ Just put the graphNavigator folder in your ComfyUI\\web\\extensions folder.
 ## TODO
 
 Currently there is only one set of saved views. Ideally the views would be saved with the png data so you can have custom views for each image / workflow.
-
-![image](https://user-images.githubusercontent.com/111552054/235281310-9d909f5f-93be-4603-86ed-fc23fbf97a4f.png)
