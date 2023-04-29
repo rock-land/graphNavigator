@@ -10,10 +10,10 @@ app.registerExtension({
 
         const menu = document.querySelector(".comfy-menu");
 
-        const hr = document.createElement("hr");
-        hr.style.margin = "20px 0";
-        hr.style.width = "100%";
-        menu.append(hr);
+        const separator = document.createElement("hr");
+        separator.style.margin = "20px 0";
+        separator.style.width = "100%";
+        menu.append(separator);
 
         const graphNavigatorDiv = document.createElement("div");
         graphNavigatorDiv.classList.add("graphNavigator");
@@ -89,10 +89,7 @@ app.registerExtension({
             name.style.width = "80%";
             name.textContent = view.name;
             name.onclick = () => {
-                const { offsetX, offsetY, scale } = view;
-                app.canvas.setZoom(scale);
-                app.canvas.ds.offset = new Float32Array([offsetX, offsetY]);
-                app.canvas.setDirty(true, true);
+                updateGraph(view);
             };
 
             name.ondblclick = () => {
@@ -157,6 +154,34 @@ app.registerExtension({
                 });
             };
 
+            // Add horizontal line after every 4 views
+            const index = views.findIndex((v) => v.name === view.name);
+            if (index % 4 === 3) {
+                const separator = document.createElement("hr");
+                separator.style.margin = "10px 0";
+                separator.style.width = "100%";
+                viewsList.append(separator);
+            }
+
+            // update graph scale and offset
+            const updateGraph = (view) => {
+                const { offsetX, offsetY, scale } = view;
+                app.canvas.setZoom(scale);
+                app.canvas.ds.offset = new Float32Array([offsetX, offsetY]);
+                app.canvas.setDirty(true, true);
+            }
+
+            // shortcuts: press ctrl-shift-Fn keys to update graph
+            document.addEventListener("keydown", (event) => {
+                if (event.ctrlKey && event.shiftKey) {
+                    const fKeyIndex = getFKeyIndex(event.code);
+                    if (fKeyIndex >= 1 && fKeyIndex <= 12 && views[fKeyIndex - 1]) {
+                        const view = views[fKeyIndex - 1];
+                        updateGraph(view);
+                    }
+                }
+            });
+
         };
 
         const saveViews = () => {
@@ -179,3 +204,13 @@ app.registerExtension({
         loadViews();
     },
 });
+
+function getFKeyIndex(code) {
+    if (code.startsWith("F")) {
+        const index = parseInt(code.slice(1), 10);
+        if (!isNaN(index)) {
+            return index;
+        }
+    }
+    return -1;
+}
