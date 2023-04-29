@@ -14,7 +14,10 @@ Double-click the view name or right-click and select Rename from the context men
 Right-click select Rename from the context menu.
 
 **Arrange Views**
-Drag and drop views to change the order
+Drag and drop views to change the order.
+
+**Keyboard Shortcuts**
+The first 12 views can be switched to using (ctrl-shift-Fn), where Fn is the corresponding view number.
 
 ![image](https://user-images.githubusercontent.com/111552054/235281310-9d909f5f-93be-4603-86ed-fc23fbf97a4f.png)
 
